@@ -48,14 +48,12 @@ flowchart TD
 │   └── airflow_pipeline.py       # Airflow DAG: 3-stage retraining & evaluation gate
 ├── data/
 │   ├── house_data.csv            # Historical California Housing baseline dataset
-│   ├── feedback_submissions.csv  # User-submitted ground-truth feedback records
-│   └── holdout_test.csv          # Evaluation holdout split generated during retraining
+│   └── feedback_submissions.csv  # User-submitted ground-truth feedback records
 ├── models/
 │   ├── house_model.pkl           # Active production Random Forest model
 │   └── latest_eval_metrics.json  # Latest validation gate metrics and decision
 ├── app.py                        # Streamlit landscape dashboard (predict + feedback + metrics)
 ├── train_model.py                # Initial model training & baseline dataset downloader
-├── seed_feedback.py              # Synthetic feedback generator for gate testing
 ├── docker-compose.yml            # Airflow Webserver, Scheduler & PostgreSQL stack
 ├── Dockerfile                    # Custom Airflow image with ML dependencies
 ├── requirements.txt              # Python package requirements
@@ -82,7 +80,7 @@ flowchart TD
 
 ### 2. Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/house-price-prediction-airflow.git
+git clone https://github.com/just000Curious/house-price-prediction-airflow.git
 cd house-price-prediction-airflow
 ```
 
@@ -127,11 +125,9 @@ Open [http://localhost:8501](http://localhost:8501) in your browser.
 
 ## 🧪 Testing the Champion / Challenger Quality Gate
 
-1. **Seed Test Feedback:**
-   Inject 50 realistic feedback entries into the data pool:
-   ```bash
-   python seed_feedback.py
-   ```
+1. **Submit Real Feedback:**
+   - In the Streamlit dashboard, predict a house value and enter an actual sale price in Section 2, then click **"Save Feedback for Retraining"**.
+   - Or append entries directly to `data/feedback_submissions.csv`.
 
 2. **Trigger Retraining:**
    - In the Streamlit dashboard, click **"🚀 Retrain Model via Airflow"**, or trigger it directly via CLI:
@@ -166,3 +162,4 @@ docker compose down
 
 ## 📄 License
 This project is open-source and available under the [MIT License](LICENSE).
+
