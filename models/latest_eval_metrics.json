@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-11-14 01:09:05",
+  "min_r2_threshold": 0.75,
+  "challenger_r2": 0.8008,
+  "challenger_rmse": 0.5074,
+  "production_r2": 0.972,
+  "production_rmse": 0.1902,
+  "decision": "REJECTED",
+  "reason": "Production model retained (challenger met threshold 0.75 but scored lower than production)"
+}
+
